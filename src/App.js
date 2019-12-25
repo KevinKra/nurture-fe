@@ -4,7 +4,7 @@ import axios from 'axios';
 import Home from './components/_pages/Home/Home';
 import Dashboard from './components/_pages/Dashboard/Dashboard';
 import NavBar from './components/NavBar/NavBar';
-import AuthForms from './components/_pages/AuthForms/AuthForms';
+import AuthForms from './components/_auth/AuthForms';
 import './App.css';
 
 class App extends Component {
