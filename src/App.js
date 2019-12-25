@@ -49,7 +49,16 @@ class App extends Component {
 		return (
 			<div className="App">
 				<BrowserRouter>
-					<Route path="/" render={(props) => <NavBar {...props} handleLogout={this.handleLogout} />} />
+					<Route
+						path="/"
+						render={(props) => (
+							<NavBar
+								{...props}
+								loggedInStatus={this.state.loggedInStatus}
+								handleLogout={this.handleLogout}
+							/>
+						)}
+					/>
 					<Route exact path="/" component={Home} />
 					<Route
 						exact
