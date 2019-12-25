@@ -25,7 +25,7 @@ class App extends Component {
 	};
 
 	handleLogout = () => {
-		axios.delete('http://localhost:3001/logout', { withCredentials: true });
+		axios.delete('http://localhost:3001/api/v1/logout', { withCredentials: true });
 		this.setState({
 			loggedInStatus: 'NOT_LOGGED_IN',
 			user: {}
@@ -34,7 +34,7 @@ class App extends Component {
 
 	checkLoginStatus = () => {
 		axios
-			.get('http://localhost:3001/logged_in', { withCredentials: true })
+			.get('http://localhost:3001/api/v1/logged_in', { withCredentials: true })
 			.then((response) => {
 				if (response.data.logged_in && this.state.loggedInStatus === 'NOT_LOGGED_IN') {
 					this.setState({ loggedInStatus: 'LOGGED_IN', user: response.data.user });

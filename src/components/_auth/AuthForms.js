@@ -24,7 +24,7 @@ export default class AuthForms extends Component {
 		const { email, password, password_confirmation } = this.state;
 		axios
 			.post(
-				'http://localhost:3001/registrations',
+				'http://localhost:3001/api/v1/registrations',
 				{
 					user: {
 						email: email,
@@ -40,7 +40,7 @@ export default class AuthForms extends Component {
 				}
 			})
 			.catch((error) => {
-				console.log('registration error', error);
+				this.setState({ error: error.message });
 			});
 	};
 
@@ -48,7 +48,7 @@ export default class AuthForms extends Component {
 		e.preventDefault();
 		axios
 			.post(
-				'http://localhost:3001/sessions',
+				'http://localhost:3001/api/v1/sessions',
 				{
 					user: { email: this.state.email, password: this.state.password }
 				},
@@ -60,7 +60,7 @@ export default class AuthForms extends Component {
 				}
 			})
 			.catch((error) => {
-				console.log('login error', error);
+				this.setState({ error: error.message });
 			});
 	};
 
@@ -130,7 +130,7 @@ export default class AuthForms extends Component {
 
 		const errorReport = (
 			<div>
-				<h2>{this.state.error}</h2>
+				<h5>{this.state.error}</h5>
 			</div>
 		);
 		return (
