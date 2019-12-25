@@ -15,7 +15,8 @@ class Registration extends Component {
 	}
 
 	handleChange = (e) => {
-		this.setState({ [e.target.name]: e.target.value });
+		const { name, value } = e.target;
+		this.setState({ [name]: value });
 	};
 
 	handleSubmit = (e) => {
@@ -34,8 +35,9 @@ class Registration extends Component {
 				{ withCredentials: true }
 			)
 			.then((response) => {
-				console.log('Registration Response', response);
-				this.props.history.push('/dashboard');
+				if (response.data.status === 'created') {
+					this.props.handleSuccessfulAuth(response.data);
+				}
 			})
 			.catch((error) => {
 				console.log('Registration Error', error);
