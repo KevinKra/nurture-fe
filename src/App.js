@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Home from './components/_pages/Home/Home';
 import Dashboard from './components/_pages/Dashboard/Dashboard';
@@ -24,8 +24,7 @@ class App extends Component {
 		});
 	};
 
-	handleLogout = () => {
-		axios.delete('http://localhost:3001/api/v1/logout', { withCredentials: true });
+	logoutUser = () => {
 		this.setState({
 			loggedInStatus: 'NOT_LOGGED_IN',
 			user: {}
@@ -55,7 +54,7 @@ class App extends Component {
 							<NavBar
 								{...props}
 								loggedInStatus={this.state.loggedInStatus}
-								handleLogout={this.handleLogout}
+								logoutUser={this.logoutUser}
 							/>
 						)}
 					/>
