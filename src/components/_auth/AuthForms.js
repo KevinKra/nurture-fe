@@ -38,11 +38,10 @@ export default class AuthForms extends Component {
 				if (response.data.status === 200) {
 					this.handleSuccessfulAuth(response.data);
 				}
-				console.log(response);
+			})
+			.catch((error) => {
+				console.log('registration error', error);
 			});
-		// .catch((error) => {
-		// 	console.log('registration error', error);
-		// });
 	};
 
 	handleLogin = (e) => {
@@ -56,7 +55,6 @@ export default class AuthForms extends Component {
 				{ withCredentials: true }
 			)
 			.then((response) => {
-				console.log(response);
 				if (response.data.logged_in) {
 					this.handleSuccessfulAuth(response.data);
 				}
@@ -67,16 +65,18 @@ export default class AuthForms extends Component {
 	};
 
 	render() {
+		const { email, password, password_confirmation } = this.state;
+		const { loggedInStatus } = this.props;
 		const registrationForm = (
 			<section>
-				<h4>{this.props.loggedInStatus}</h4>
+				<h4>{loggedInStatus}</h4>
 				<h2>Registration Form</h2>
 				<form onSubmit={this.handleRegistration}>
 					<input
 						type="email"
 						name="email"
 						placeholder="Email"
-						value={this.state.email}
+						value={email}
 						onChange={this.handleChange}
 						required
 					/>
@@ -84,7 +84,7 @@ export default class AuthForms extends Component {
 						type="password"
 						name="password"
 						placeholder="Password"
-						value={this.state.password}
+						value={password}
 						onChange={this.handleChange}
 						required
 					/>
@@ -92,7 +92,7 @@ export default class AuthForms extends Component {
 						type="password"
 						name="password_confirmation"
 						placeholder="Password Confirmation"
-						value={this.state.password_confirmation}
+						value={password_confirmation}
 						onChange={this.handleChange}
 						required
 					/>
@@ -104,14 +104,14 @@ export default class AuthForms extends Component {
 
 		const loginForm = (
 			<section>
-				<h4>{this.props.loggedInStatus}</h4>
+				<h4>{loggedInStatus}</h4>
 				<h2>Login Form</h2>
 				<form onSubmit={this.handleLogin}>
 					<input
 						type="email"
 						name="email"
 						placeholder="Email"
-						value={this.state.email}
+						value={email}
 						onChange={this.handleChange}
 						required
 					/>
@@ -119,7 +119,7 @@ export default class AuthForms extends Component {
 						type="password"
 						name="password"
 						placeholder="Password"
-						value={this.state.password}
+						value={password}
 						onChange={this.handleChange}
 						required
 					/>
