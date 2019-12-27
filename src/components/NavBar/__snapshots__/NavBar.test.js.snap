@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar renders the correct navbar if the user is not logged in 1`] = `
+<nav
+  className="top-nav"
+>
+  <Link
+    to="/"
+  >
+    Home
+  </Link>
+  <Link
+    to="/register"
+  >
+    Register
+  </Link>
+  <Link
+    to="/login"
+  >
+    Login
+  </Link>
+</nav>
+`;
+
+exports[`NavBar renders the correct navbar when the user logged in 1`] = `
+<nav
+  className="top-nav"
+>
+  <Link
+    to="/"
+  >
+    Home
+  </Link>
+  <button
+    onClick={[Function]}
+  >
+    Logout
+  </button>
+</nav>
+`;
